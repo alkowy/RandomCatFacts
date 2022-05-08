@@ -4,6 +4,7 @@ import com.example.catfacts.common.Resource
 import com.example.catfacts.data.remote.dto.toCatFact
 import com.example.catfacts.domain.model.CatFactModel
 import com.example.catfacts.domain.repository.CatFactsRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -16,6 +17,7 @@ class GetRandomCatFactsUseCase @Inject constructor(
     operator fun invoke(amountOfFacts: Int): Flow<Resource<List<CatFactModel>>> = flow {
         try {
             emit(Resource.Loading())
+            delay(500) // short delay to display the progress bar after refreshing the list
             val catFacts = repository.getRandomCatFacts(amountOfFacts).map { it.toCatFact() }
             emit(Resource.Success(catFacts))
         } catch (e: HttpException) {

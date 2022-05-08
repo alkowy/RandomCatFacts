@@ -21,7 +21,7 @@ class GetCatFactByIdUseCase @Inject constructor(
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "Some Http error occurred"))
         } catch (e: IOException) {
-            emit(Resource.Error(e.toString()))
+            emit(Resource.Error("Check your Internet connection"))
         }
     }
 }

@@ -2,18 +2,17 @@ package com.example.catfacts.presentation.cat_facts_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.catfacts.common.DefaultDispatchers
 import com.example.catfacts.common.Resource
 import com.example.catfacts.domain.use_case.GetRandomCatFactsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class CatFactsListViewModel @Inject constructor(
-    private val getRandomCatFactsUseCase: GetRandomCatFactsUseCase
+    private val getRandomCatFactsUseCase: GetRandomCatFactsUseCase,
+    private val dispatchers: DefaultDispatchers
 ) : ViewModel() {
 
     private val _catFactsListState = MutableStateFlow(CatFactsState())
@@ -38,6 +37,6 @@ class CatFactsListViewModel @Inject constructor(
                     )
                 }
             }
-        }.launchIn(viewModelScope)
+        }.flowOn(dispatchers.main).launchIn(viewModelScope)
     }
 }

@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_cat_facts_list" >
         <action
             android:id="@+id/action_catFactsListFragment_to_catFactDetailsFragment"
-            app:destination="@id/catFactDetailsFragment" />
+            app:destination="@id/catFactDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/catFactDetailsFragment"
@@ -21,6 +23,8 @@
         tools:layout="@layout/fragment_cat_fact_details" >
         <action
             android:id="@+id/action_catFactDetailsFragment_to_catFactsListFragment"
-            app:destination="@id/catFactsListFragment" />
+            app:destination="@id/catFactsListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 </navigation>

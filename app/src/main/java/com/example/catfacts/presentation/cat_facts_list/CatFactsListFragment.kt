@@ -19,6 +19,7 @@ import com.example.catfacts.R
 import com.example.catfacts.common.Constants
 import com.example.catfacts.databinding.FragmentCatFactsListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

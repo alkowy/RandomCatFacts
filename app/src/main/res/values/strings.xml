@@ -4,4 +4,5 @@
     <string name="cats_fact">Cats fact:</string>
     <string name="cats_fact_updated">Cats fact was updated on:</string>
     <string name="refresh">Refresh</string>
+    <string name="factIcon">Fact icon</string>
 </resources>

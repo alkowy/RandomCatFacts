@@ -1,6 +1,5 @@
 package com.example.catfacts.data.remote.dto
 
-
 import com.example.catfacts.domain.model.CatFactModel
 import com.google.gson.annotations.SerializedName
 

@@ -100,12 +100,12 @@ class CatFactDetailsFragment : Fragment() {
 
     private fun showProgressBar() {
         binding.catFactDetailsProgressBar.visibility = View.VISIBLE
-        binding.tvGroup.visibility = View.INVISIBLE
+        binding.scrollView.visibility = View.INVISIBLE
     }
 
     private fun hideProgressBar() {
         binding.catFactDetailsProgressBar.visibility = View.GONE
-        binding.tvGroup.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

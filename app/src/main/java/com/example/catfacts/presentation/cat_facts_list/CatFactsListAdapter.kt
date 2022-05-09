@@ -9,12 +9,13 @@ import com.example.catfacts.R
 import com.example.catfacts.databinding.CatFactsListItemRvBinding
 import com.example.catfacts.domain.model.CatFactModel
 
-class CatFactsListAdapter  : RecyclerView.Adapter<CatFactsListAdapter.CatFactsListHolder>(){
+class CatFactsListAdapter : RecyclerView.Adapter<CatFactsListAdapter.CatFactsListHolder>() {
 
-    private var catFactsList : List<CatFactModel> = emptyList()
+    private var catFactsList: List<CatFactModel> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatFactsListHolder {
-        val itemBinding = CatFactsListItemRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            CatFactsListItemRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CatFactsListHolder(itemBinding)
     }
 
@@ -24,19 +25,23 @@ class CatFactsListAdapter  : RecyclerView.Adapter<CatFactsListAdapter.CatFactsLi
     }
 
     override fun getItemCount(): Int {
-       return catFactsList.size
+        return catFactsList.size
     }
 
-    fun updateCatFactsList(newCatFactsList : List<CatFactModel>){
+    fun updateCatFactsList(newCatFactsList: List<CatFactModel>) {
         catFactsList = newCatFactsList
         notifyDataSetChanged()
     }
 
-    class CatFactsListHolder(private val itemBinding : CatFactsListItemRvBinding) : RecyclerView.ViewHolder(itemBinding.root){
-        fun bind(catFact: CatFactModel){
+    class CatFactsListHolder(private val itemBinding: CatFactsListItemRvBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(catFact: CatFactModel) {
             itemBinding.catFactIdTv.text = catFact.id
             itemBinding.root.setOnClickListener {
-                Navigation.findNavController(itemBinding.root).navigate(R.id.action_catFactsListFragment_to_catFactDetailsFragment, bundleOf("catFactId" to catFact.id))
+                Navigation.findNavController(itemBinding.root).navigate(
+                    R.id.action_catFactsListFragment_to_catFactDetailsFragment,
+                    bundleOf("catFactId" to catFact.id)
+                )
             }
         }
     }

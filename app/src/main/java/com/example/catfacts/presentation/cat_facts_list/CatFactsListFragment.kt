@@ -20,6 +20,7 @@ import com.example.catfacts.common.Constants
 import com.example.catfacts.databinding.FragmentCatFactsListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -57,6 +58,8 @@ class CatFactsListFragment : Fragment() {
     private fun onRefreshBtnClick() {
         binding.refreshBtn.setOnClickListener {
             viewModel.getRandomCatFacts(Constants.AMOUNT_OF_FACTS)
+            binding.catFactsListRv.smoothScrollToPosition(0)
+            binding.catFactsListRv.scheduleLayoutAnimation()
         }
     }
 
@@ -67,6 +70,7 @@ class CatFactsListFragment : Fragment() {
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         rvFactsList.adapter = catFactsListAdapter
         rvFactsList.layoutManager = LinearLayoutManager(context)
+        binding.catFactsListRv.scheduleLayoutAnimation()
     }
 
     private fun collectRandomCatFacts() {
@@ -82,6 +86,7 @@ class CatFactsListFragment : Fragment() {
                     } else if (state.catFacts.isNotEmpty()) {
                         catFactsListAdapter.updateCatFactsList(state.catFacts)
                         hideProgressBar()
+
                     }
                 }
             }
@@ -94,12 +99,12 @@ class CatFactsListFragment : Fragment() {
 
     private fun showProgressBar() {
         binding.catFactsListProgressBar.visibility = View.VISIBLE
-        //    binding.catFactsListRv.visibility = View.INVISIBLE
+            binding.catFactsListRv.visibility = View.INVISIBLE
     }
 
     private fun hideProgressBar() {
         binding.catFactsListProgressBar.visibility = View.GONE
-        //   binding.catFactsListRv.visibility = View.VISIBLE
+           binding.catFactsListRv.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {
